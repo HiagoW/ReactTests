@@ -1,5 +1,6 @@
 import { useRef, useState } from "react"
 import { useAdicionarParticipante } from "../state/hook/useAdicionarParticipante"
+import useMensagemDeErro from "../state/hook/useMensagemDeErro"
 
 const Formulario = () => {
 
@@ -7,6 +8,7 @@ const Formulario = () => {
 
     const inputRef = useRef<HTMLInputElement>(null)
     const adicionarNaLista = useAdicionarParticipante()
+    const mensagemDeErro = useMensagemDeErro();
 
     const adicionarParticipante = (evento: React.FormEvent<HTMLFormElement>) => {
         evento.preventDefault()
@@ -22,6 +24,7 @@ const Formulario = () => {
                 onChange={evento => setNome(evento.target.value)}
                 type="text" placeholder="Insira os nomes dos participantes" />
             <button disabled={!nome}>Adicionar</button>
+            {mensagemDeErro && <p role="alert">{mensagemDeErro}</p>}
         </form>
     )
 }
