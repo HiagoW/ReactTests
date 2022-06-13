@@ -1,13 +1,16 @@
 import { useNavigate } from "react-router-dom"
 import { useListaDeParticipantes } from "../state/hook/useListaDeParticipantes"
+import { useSorteador } from "../state/hook/useSorteador"
 import './Rodape.css'
 
 const Rodape = () => {
 
     const participantes = useListaDeParticipantes()
-    
+    const sortear = useSorteador()
     const navegarPara = useNavigate()
+
     const iniciar = () => {
+        sortear()
         navegarPara('/sorteio')
     }
 
